@@ -39,7 +39,30 @@ const songs = [
   },
 ];
 
-
+let songIndex = 0;
+const prevSong = () => {
+    songIndex--;
+    if(songIndex <= -1) {
+      songIndex = 0
+      prevBtn.classList.add('prev-btn-disabled')
+    } else {
+      nextBtn.classList.remove('next-btn-disabled')
+      loadSongs(songs[songIndex])
+      playSong()
+    }
+    
+}
+const nextSong = () => {
+    songIndex++;
+    if(songIndex >= songs.length) {
+      songIndex = songs.length-1;
+      nextBtn.classList.add('next-btn-disabled')
+    } else {
+      prevBtn.classList.remove('prev-btn-disabled')
+      loadSongs(songs[songIndex])
+      playSong()
+    }
+}
 
 // Update DOM
 const loadSongs = song => {
